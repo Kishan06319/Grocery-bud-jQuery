@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // Grocery items array
-  const groceryItems = [
+  let groceryItems = [
     { id: "1", name: "milk", completed: true },
     { id: "2", name: "bread", completed: true },
     { id: "3", name: "eggs", completed: false },
@@ -19,7 +19,12 @@ $(document).ready(function () {
 
       const $checkbox = $("<input>")
         .attr("type", "checkbox")
-        .prop("checked", item.completed);
+        .prop("checked", item.completed)
+        .on("change", function () {
+          // Toggle completed state
+          item.completed = $(this).is(":checked");
+          renderItems(groceryItems);
+        });
 
       const $name = $("<p>")
         .text(item.name)
