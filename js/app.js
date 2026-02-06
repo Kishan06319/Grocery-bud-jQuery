@@ -33,7 +33,12 @@ $(document).ready(function () {
 
       const $removeBtn = $("<button>")
         .addClass("btn remove-btn")
-        .text("Remove");
+        .text("Remove")
+        .on("click", function () {
+          // Remove item by filtering out its id
+          groceryItems = groceryItems.filter((i) => i.id !== item.id);
+          renderItems(groceryItems);
+        });
 
       $item.append($checkbox, $name, $editBtn, $removeBtn);
       $container.append($item);
