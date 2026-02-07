@@ -1,5 +1,15 @@
 .items {
-  margin-top: 2rem;
-  display: grid;
-  row-gap: 1.25rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.single-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.single-item span {
+  flex-grow: 1;
 }

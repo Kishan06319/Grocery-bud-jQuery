@@ -10,10 +10,10 @@ $(document).ready(function () {
     const $app = $("#app");
     $app.empty();
 
-    const $container = $("<div>").addClass("items");
+    const $list = $("<ul>").addClass("items");
 
     items.forEach((item) => {
-      const $item = $("<div>").addClass("single-item");
+      const $li = $("<li>").addClass("single-item");
 
       const $checkbox = $("<input>")
         .attr("type", "checkbox")
@@ -23,7 +23,7 @@ $(document).ready(function () {
           renderItems(groceryItems);
         });
 
-      const $name = $("<p>")
+      const $name = $("<span>")
         .text(item.name)
         .css("text-decoration", item.completed ? "line-through" : "none");
 
@@ -35,17 +35,33 @@ $(document).ready(function () {
         .addClass("btn remove-btn")
         .text("Remove")
         .on("click", function () {
-          // Remove item by filtering out its id
           groceryItems = groceryItems.filter((i) => i.id !== item.id);
           renderItems(groceryItems);
         });
 
-      $item.append($checkbox, $name, $editBtn, $removeBtn);
-      $container.append($item);
+      $li.append($checkbox, $name, $editBtn, $removeBtn);
+      $list.append($li);
     });
 
-    $app.append($container);
+    $app.append($list);
   }
+
+  // Handle form submission
+  $("#grocery-form").on("submit", function (e) {
+    e.preventDefault();
+    const inputVal = $("#grocery-input").val().trim();
+
+    if (inputVal) {
+      const newItem = {
+        id: Date.now().toString(),
+        name: inputVal,
+        completed: false,
+      };
+      groceryItems.push(newItem);
+      $("#grocery-input").val(""); // clear input
+      renderItems(groceryItems);
+    }
+  });
 
   renderItems(groceryItems);
 });
