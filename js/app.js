@@ -29,7 +29,21 @@ $(document).ready(function () {
 
       const $editBtn = $("<button>")
         .addClass("btn edit-btn")
-        .text("Edit");
+        .text("Edit")
+        .on("click", function () {
+          // Replace span with input for editing
+          const $input = $("<input>")
+            .attr("type", "text")
+            .val(item.name)
+            .on("blur keypress", function (e) {
+              if (e.type === "blur" || e.key === "Enter") {
+                item.name = $(this).val().trim() || item.name;
+                renderItems(groceryItems);
+              }
+            });
+          $name.replaceWith($input);
+          $input.focus();
+        });
 
       const $removeBtn = $("<button>")
         .addClass("btn remove-btn")

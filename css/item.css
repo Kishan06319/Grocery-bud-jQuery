@@ -13,3 +13,9 @@
 .single-item span {
   flex-grow: 1;
 }
+
+.single-item input[type="text"] {
+  flex-grow: 1;
+  padding: 4px;
+  font-size: 1rem;
+}
