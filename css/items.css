@@ -19,3 +19,18 @@
   padding: 4px;
   font-size: 1rem;
 }
+
+.clear-btn {
+  margin-top: 1rem;
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  color: gray;
+  font-style: italic;
+}
